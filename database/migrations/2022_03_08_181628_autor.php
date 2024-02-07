@@ -13,7 +13,7 @@ class Autor extends Migration
      */
     public function up()
     {
-        Schema::create('autors', function(Blueprint $table) {
+        Schema::create('autores', function(Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamp('updated_at')->nullable();
@@ -28,6 +28,6 @@ class Autor extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('autors');
+        Schema::dropIfExists('autores');
     }
 }
