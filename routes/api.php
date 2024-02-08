@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\AutorController;
+use App\Http\Controllers\ClienteController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,3 +31,9 @@ Route::get('/autores/{id}', [AutorController::class, 'show']);
 Route::post('/autores', [AutorController::class, 'store']);
 Route::put('/autores/{id}', [AutorController::class, 'update']);
 Route::delete('/autores/{id}', [AutorController::class, 'delete']);
+
+Route::get('/clientes', [ClienteController::class, 'index']);
+Route::get('/clientes/{id}', [ClienteController::class, 'show']);
+Route::post('/clientes', [ClienteController::class, 'store']);
+Route::put('/clientes/{id}', [ClienteController::class, 'update']);
+Route::delete('/clientes/{id}', [ClienteController::class, 'delete']);
