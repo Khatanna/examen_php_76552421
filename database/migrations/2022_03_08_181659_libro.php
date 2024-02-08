@@ -21,7 +21,7 @@ class Libro extends Migration
             $table->text('description');
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->nullable();
-            $table->foreign('autor_id')->references('id')->on('autores');
+            $table->foreign('autor_id')->references('id')->on('autores')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

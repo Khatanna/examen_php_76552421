@@ -9,11 +9,12 @@ class LibroController extends Controller
 {
     public function index() {
         $libros = Libro::query();
-        if (request('limit')) {
-            return $libros->paginate(request('limit'));
+
+        if(request('autor') === "true") {
+            $libros->with('autor');
         }
 
-        return $libros->paginate(10);
+        return $libros->paginate(request('limit') ?? 10);
     }
 
     public function show($id) {

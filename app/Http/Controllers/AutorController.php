@@ -9,11 +9,20 @@ class AutorController extends Controller
 {
     public function index() {
     $autores = Autor::query();
-    if (request('limit')) {
+
+    if(request('name')) {
+        $autores->where('name', 'like', '%' . request('name') . '%');
+    }
+
+    if(request('libros')) {
+        $autores->with('libros')->paginate(10);
+    }
+
+    if(request('limit')) {
         return $autores->paginate(request('limit'));
     }
 
-    return $autores->paginate(10);
+    return $autores->get();
 }
 
     public function show($id) {
