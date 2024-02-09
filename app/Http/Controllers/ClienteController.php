@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Prestamos;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -39,5 +40,17 @@ class ClienteController extends Controller
         $cliente = Cliente::findOrFail($id);
         $cliente->delete();
         return 204;
+    }
+
+    public function prestamos_vencidos() {
+        $query = Cliente::query();
+        if(request('late')) {
+            $query->whereHas('prestamos', function ($query) {
+                $query->where('estado', 'En Prestamo')
+                    ->whereRaw('fecha_prestamo + INTERVAL dias_prestamo DAY < NOW()');
+            });
+      }
+
+        return $query->get();
     }
 }

@@ -14,7 +14,11 @@ class LibroController extends Controller
             $libros->with('autor');
         }
 
-        return $libros->paginate(request('limit') ?? 10);
+        if(\request('limit')) {
+            return $libros->paginate(request('limit'));
+        }
+
+        return $libros->get();
     }
 
     public function show($id) {

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\PrestamosController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,7 +34,12 @@ Route::put('/autores/{id}', [AutorController::class, 'update']);
 Route::delete('/autores/{id}', [AutorController::class, 'delete']);
 
 Route::get('/clientes', [ClienteController::class, 'index']);
+Route::get('/clientes/prestamos', [ClienteController::class, 'prestamos_vencidos']);
 Route::get('/clientes/{id}', [ClienteController::class, 'show']);
 Route::post('/clientes', [ClienteController::class, 'store']);
 Route::put('/clientes/{id}', [ClienteController::class, 'update']);
 Route::delete('/clientes/{id}', [ClienteController::class, 'delete']);
+
+Route::get('/prestamos', [PrestamosController::class, 'index']);
+Route::post('/prestamos', [PrestamosController::class, 'store']);
+Route::put('/prestamos/{id}/devolucion', [PrestamosController::class, 'devolucion']);
